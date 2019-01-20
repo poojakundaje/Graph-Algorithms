@@ -216,58 +216,6 @@ public class Graph {
 		return array;
 	}
 	
-	/**
-	 * depth first search of the graph 
-	 * @param G
-	 *Written by Pooja Kundaje 
-	 */
-	public static boolean cyclic (Graph G) {
-		for(Vertex u: myVertices.values()) {
-			u.setWhite();
-			u.setPred(null);
-		}
-		
-		for(Vertex u: myVertices.values()) {
-			if(u.getColor()=="white") {
-				visit(u);
-				//for every visited vertex u, if there is an adjacent v
-				//such that v is already visited and u is not a parent of v then 
-				//there is a cycle in the graph (logic from geeks for geeks)
-				for(Vertex t: myAdjList.get(u)) {
-					if((t.getColor()=="gray"|| t.getColor()=="black") && t.getPred()==u.toString()) {
-						return true;
-					}
-					else {
-						return false;
-					}
-				}
-			}
-			
-			
-		}
-		return false;
-		
-	}
-	
-	/**
-	 * called in the dfs method, this check 
-	 * @param u
-	 */
-	public static void visit (Vertex u){
-		//set color to gray if the vertex has been visited
-		u.setGray();
-		for(Vertex v: myAdjList.get(u)) {
-			//if the color is white then set its predecessor to u and visit v
-			if(v.getColor()=="white") {
-				v.setPred(u.toString());
-				visit(v);
-			}
-			
-		}
-		//if the vertices adjacent vertices have been looked at then the vertex is set to black
-		u.setBlack();
-	}
-	
 
 	/**
 	 * returns the Vertex that has the highest total degree
